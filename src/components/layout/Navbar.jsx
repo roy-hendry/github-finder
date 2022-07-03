@@ -13,9 +13,10 @@ function Navbar({title}) {
                         {title}
                     </Link>
                 </div>
-                <div //flex is basically the ratio of how much of a section something covers. So 3 things all having a flex of 1 would mean they would take up 1/3 of the section each
-                //https://tailwindcss.com/docs/flex-basis
-                className="flex-1 px-2 mx-2">
+                <div className="flex-1 px-2 mx-2">
+                    {/* flex is basically the ratio of how much of a section something covers. So 3 things all having a flex of 1 would mean they would take up 1/3 of the section each
+                    https://tailwindcss.com/docs/flex-basis
+                    */}
                     <div className="flex justify-end">
                         <Link to="/" className="btn btn-ghost btn-sm rounded-btn">
                             Home
