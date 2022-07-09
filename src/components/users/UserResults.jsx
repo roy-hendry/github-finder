@@ -9,6 +9,7 @@ function UserResults() {
     if(!loading) {
         return (
             <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
+                {/*Goes through the list of users it's been passed and maps them using the UserItem component - remember this*/}
             {users.map((user) => (
                 <UserItem key={user.id}  user={user}/>
             ))}

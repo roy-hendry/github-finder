@@ -15,6 +15,7 @@ function UserItem({user: {login, avatar_url}}) {
                 <h2 className="card-title">
                     {login}
                 </h2>
+                {/*Will take the user to a page based off the name of the user they are clicking on*/}
                 <Link className="text-base-content text-opacity-40" to={`/users/${login}`}>
                     Visit Profile
                 </Link>

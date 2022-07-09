@@ -19,7 +19,8 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/notfound" element={<NotFound />} />
-
+                            {/*if you try to go to any of the pages that don't
+                            exist you'll get sent to the NotFound page */}
                             <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </main>
