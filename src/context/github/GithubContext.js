@@ -9,7 +9,7 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 export const GithubProvider = ({ children }) => {
     const initialState = {
-        users: [],
+        users: [], // The initial users array is just an empty array
         loading: false,
     };
 
@@ -31,24 +31,33 @@ export const GithubProvider = ({ children }) => {
 
         const { items } = await response.json();
 
+        // All of the dispatch actions are in the reducer
         dispatch({
             type: "GET_USERS",
             payload: items,
         });
     };
 
-    //set loading
+    // Set loading
     const setLoading = () =>
         dispatch({
             type: "SET_LOADING",
         });
 
+    const clearUsers = () => {
+        dispatch({
+            type: "CLEAR_USERS",
+        });
+    };
+
+    // Giving access to this data and these methods outside the GithubContext
     return (
         <GithubContext.Provider
             value={{
                 users: state.users,
                 loading: state.loading,
                 searchUsers,
+                clearUsers,
             }}
         >
             {children}
