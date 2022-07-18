@@ -11,6 +11,7 @@ export const GithubProvider = ({ children }) => {
     const initialState = {
         users: [], // The initial users array is just an empty array
         user: {},
+        repos: [],
         loading: false,
     };
 
@@ -63,6 +64,33 @@ export const GithubProvider = ({ children }) => {
         }
     };
 
+    const getUserRepos = async (login) => {
+        setLoading();
+
+        // Filtering results so that the repos are sorted by the date they were created and there is only the first 10 per page
+        const params = new URLSearchParams({
+            sort: "created",
+            per_page: 10,
+        });
+
+        const response = await fetch(
+            `${GITHUB_URL}/users/${login}/repos?${params}`,
+            {
+                headers: {
+                    Authorization: `token ${GITHUB_TOKEN}`,
+                },
+            }
+        );
+
+        const data = await response.json();
+
+        // All of the dispatch actions are in the reducer
+        dispatch({
+            type: "GET_REPOS",
+            payload: data,
+        });
+    };
+
     // Set loading
     const setLoading = () =>
         dispatch({
@@ -83,9 +111,11 @@ export const GithubProvider = ({ children }) => {
 
                 loading: state.loading,
                 user: state.user,
+                repos: state.repos,
                 searchUsers,
                 getUser,
                 clearUsers,
+                getUserRepos,
             }}
         >
             {children}

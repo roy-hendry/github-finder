@@ -1,18 +1,20 @@
-import {FaCode, FaCodepen, FaStore, FaUserFriends, FaUsers} from "react-icons/fa"
+import {FaCode, FaStore, FaUserFriends, FaUsers} from "react-icons/fa"
 import { useEffect, useContext } from "react";
 import {useParams} from "react-router-dom"
 import {Link} from "react-router-dom"
 import Spinner from "../components/layout/Spinner"
+import RepoList from "../components/repos/RepoList"
 import GithubContext from "../context/github/GithubContext";
 
 function User() {
     // We want to be able to access the 'getUser' method and the 'user' state
-    const {getUser, user, loading} = useContext(GithubContext)
+    const {getUser, user, loading, getUserRepos, repos} = useContext(GithubContext)
 
     const params = useParams()
 
     useEffect(() => {
         getUser(params.login)
+        getUserRepos(params.login)
     }, []) // You need this empty array or it will keep running and crash your browser
 
     const {
@@ -169,6 +171,7 @@ function User() {
           </div>
         </div>
       </div>
+        <RepoList repos={repos}/>
      </div>
     </>;
 }
