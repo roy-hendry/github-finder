@@ -15,6 +15,7 @@ function User() {
     useEffect(() => {
         getUser(params.login)
         getUserRepos(params.login)
+
     }, []) // You need this empty array or it will keep running and crash your browser
 
     const {
