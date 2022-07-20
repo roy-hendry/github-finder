@@ -8,7 +8,7 @@ function UserSearch() {
 
 	// Extracting context from the GithubContext
 	// Without this we can't use these methods or access this data
-	const { users, dispatch, clearUsers } = useContext(GithubContext);
+	const { users, dispatch } = useContext(GithubContext);
 	//Because we've pulled this in we can make an alert appear from anywhere in this file
 	const { setAlert } = useContext(AlertContext);
 
@@ -53,7 +53,11 @@ function UserSearch() {
 			</div>
 			{users.length > 0 && (
 				<div>
-					<button className="btn-ghost btn-lg" onClick={clearUsers}>
+					<button
+						className="btn-ghost btn-lg"
+						//calls the action from the reducer
+						onClick={() => dispatch({ type: "CLEAR_USERS" })}
+					>
 						Clear
 					</button>
 				</div>
