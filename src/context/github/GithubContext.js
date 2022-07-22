@@ -19,6 +19,7 @@ export const GithubProvider = ({ children }) => {
 	// 	return state + 1;
 	// };
 
+	// The second parameter which is for actions will have a type, we interact with this by seeing what it's action.type is. We have moved that part to another file so check the GithubReducer.js to see it
 	const [state, dispatch] = useReducer(githubReducer, initialState);
 
 	// Giving access to this data and these methods outside the GithubContext
