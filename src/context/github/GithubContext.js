@@ -6,10 +6,18 @@ const GithubContext = createContext();
 export const GithubProvider = ({ children }) => {
 	const initialState = {
 		users: [], // The initial users array is just an empty array
-		user: {},
+		user: {}, // An empty object
 		repos: [],
 		loading: false,
 	};
+
+	// It seems that a reducer works similar to useState - the first parameter is for the current state but the second is for an action
+	// (state, action) => newState
+
+	// Something like this can be done to increase a number by one:
+	// const counterReducer = (state, action) => {
+	// 	return state + 1;
+	// };
 
 	const [state, dispatch] = useReducer(githubReducer, initialState);
 
@@ -24,6 +32,6 @@ export const GithubProvider = ({ children }) => {
 			{children}
 		</GithubContext.Provider>
 	);
-};
+};;
 
 export default GithubContext;

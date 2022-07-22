@@ -9,6 +9,9 @@ const github = axios.create({
 	headers: { Authorization: `token ${GITHUB_TOKEN}` },
 });
 
+// We brought these methods from User.jsx into this file as it is cleaner to do it that way
+// Due to this file having no components we can use it simply as a .js file for carrying out actions. We only use .jsx files for files that specifically need react and are based around components
+
 // Get search results
 export const searchUsers = async (text) => {
 	const params = new URLSearchParams({
@@ -28,5 +31,6 @@ export const getUserAndRepos = async (login) => {
 		github.get(`/users/${login}/repos`),
 	]);
 
+	// This is the structure that the api gives us data in for the user's data and their repos
 	return { user: user.data, repos: repos.data };
 };
